@@ -1,11 +1,20 @@
 package com.github.alexandernc0043
 
 fun play(){
-    var winStatus = false
-
+    var gameStatus = true
+    printBoard()
+    while(gameStatus){
+        val guess = askGuess()
+        if(checkGuess(guess)){
+            correctGuesses += guess
+        } else {
+            wrongGuesses += guess
+        }
+        gameStatus = checkStatus()
+        printBoard()
+    }
+    printWinLost(won)
 }
-
-
 fun askGuess(): String{
     while(true){
         try {
@@ -22,6 +31,43 @@ fun askGuess(): String{
         }
     }
 }
-fun checkGuess(){
-
+fun checkGuess(guess:String): Boolean {
+    if(word.contains(guess)){
+        val amount = word.count{it == guess}
+        println("The word contains $amount of $guess.")
+        return true
+    }
+    return false
+}
+fun printBoard(){
+    println(Board.entries[wrongGuesses.size].stage)
+    for(letter in word){
+        if(correctGuesses.contains(letter)){
+            print(" $letter ")
+        } else {
+            print(" ___ ")
+        }
+    }
+    println("Wrong guesses: $wrongGuesses [${wrongGuesses.size}]")
+}
+fun checkStatus(): Boolean{
+    return if(correctGuesses.containsAll(word)){
+        won = true
+        false
+    }
+    else if(wrongGuesses.size == 6){
+        won = false
+        false
+    }
+    else {
+        true
+    }
+}
+fun printWinLost(win: Boolean){
+    if(win){
+        println("You won!")
+    } else {
+        print("You lost! The word was ")
+        word.forEach { print(it) }
+    }
 }
