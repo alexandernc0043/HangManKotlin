@@ -1,16 +1,18 @@
-package com.github.alexandernc0043
-
 fun play(){
+    word = generateWord()
     var gameStatus = true
     printBoard()
+    loop@
     while(gameStatus){
+        gameStatus = checkStatus()
+        if(gameStatus == false) break
         val guess = askGuess()
         if(checkGuess(guess)){
             correctGuesses += guess
         } else {
             wrongGuesses += guess
         }
-        gameStatus = checkStatus()
+
         printBoard()
     }
     printWinLost(won)
@@ -65,9 +67,14 @@ fun checkStatus(): Boolean{
 }
 fun printWinLost(win: Boolean){
     if(win){
-        println("You won!")
+        println("You won!\n\n\n\n")
+        wrongGuesses.clear()
+        correctGuesses.clear()
     } else {
         print("You lost! The word was ")
         word.forEach { print(it) }
+        println("\n\n\n\n")
+        wrongGuesses.clear()
+        correctGuesses.clear()
     }
 }

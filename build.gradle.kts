@@ -13,11 +13,11 @@ group = "com.github.alexandernc0043"
 version = "1.0"
 
 application {
-    mainClass.set("com.github.alexandernc0043.MainKt")
+    mainClass.set("MainKt")
 }
 
 tasks.withType<ShadowJar> {
-    include("words.txt")
+    include("resources/words.txt")
     archiveFileName.set("HangMan.jar")
 }
 

@@ -1,14 +1,9 @@
-package com.github.alexandernc0043
-
 import java.io.File
 
-private var gamesToPlay: Int = 0
-private var lengthOfWord: String = ""
 
 fun initial() {
     gamesToPlay = askGames()
     lengthOfWord = askLength()
-    word = generateWord()
 }
 
 private fun askGames(): Int {
@@ -46,45 +41,3 @@ private fun askLength(): String {
 
 }
 
-fun generateListOfWords(): List<String> {
-    return File("words.txt").readLines()
-}
-
-private fun generateWord(): List<String> {
-    val list: List<String>
-    while (true) {
-        val word = wordList.random()
-        when (lengthOfWord) {
-            "short" -> {
-                if (word.length in 0..5) {
-                    list = convertToList(word)
-                    break
-                }
-            }
-
-            "medium" -> {
-                if (word.length in 6..9) {
-                    list = convertToList(word)
-                    break
-                }
-            }
-
-            "long" -> {
-                if (word.length > 10) {
-                    list = convertToList(word)
-                    break
-                }
-            }
-        }
-    }
-    return list
-}
-
-private fun convertToList(word: String): List<String> {
-    val returnList: MutableList<String> = mutableListOf()
-    val splitWord = word.toCharArray()
-    splitWord.forEach { char ->
-        returnList += char.toString()
-    }
-    return returnList
-}

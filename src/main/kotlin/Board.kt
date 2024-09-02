@@ -1,5 +1,3 @@
-package com.github.alexandernc0043
-
 enum class Board(val stage: String) {
     Inital("""
    +--+
