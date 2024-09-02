@@ -48,7 +48,7 @@ fun printBoard(){
             print(" ___ ")
         }
     }
-    println("Wrong guesses: $wrongGuesses [${wrongGuesses.size}]")
+    println("\nWrong guesses: $wrongGuesses [${wrongGuesses.size}]")
 }
 fun checkStatus(): Boolean{
     return if(correctGuesses.containsAll(word)){
