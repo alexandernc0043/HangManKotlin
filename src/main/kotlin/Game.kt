@@ -24,6 +24,7 @@ fun askGuess(): String{
             print("> ")
             val guess = readln()
             if(guess.length > 1) throw RuntimeException("You must only enter one character.")
+            if(wrongGuesses.contains(guess) || correctGuesses.contains(guess)) throw RuntimeException("You have already entered $guess.")
             if(! guess.all {it.isLetter()}) throw RuntimeException("You must enter a letter.")
             return guess
         } catch (re: RuntimeException){
